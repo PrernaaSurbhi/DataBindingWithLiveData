@@ -1,58 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".GameFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="gameViewModel"
+            type="com.example.databindingwithlivedata.game.GameViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        tools:context=".GameFragment">
 
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="129dp" />
+        <TextView
+            android:id="@+id/word_is_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/word_is"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="normal" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="164dp"
-        tools:layout_editor_absoluteY="236dp" />
+        <TextView
+            android:id="@+id/word_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="24dp"
+            android:text="guitar"
+            android:textColor="@color/black"
+            android:layout_below="@+id/word_is_text"
+            android:textSize="34sp"
+            android:textStyle="normal"
+             />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="530dp" />
+        <TextView
+            android:id="@+id/timer_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/word_text"
+            android:gravity="center"
+            android:text="5"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="656dp" />
+        <Button
+            android:id="@+id/skip_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/timer_text"
+            android:onClick="@{()->gameViewModel.onSkip()}"
+            android:layout_marginLeft="10dp"
+            android:text="Skip"/>
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="656dp" />
+        <Button
+            android:id="@+id/correct_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/skip_button"
+            android:layout_marginLeft="10dp"
+            android:onClick="@{()->gameViewModel.onCorrect()}"
+            android:gravity="center"
+            android:layout_below="@+id/timer_text"
+            android:text="Got it"/>
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="297dp"
-        tools:layout_editor_absoluteY="645dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/end_game_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()-> gameViewModel.onGameFinish()}"
+            android:layout_toRightOf="@+id/correct_button"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:layout_below="@+id/timer_text"
+            android:text="End Game"/>
+
+    </RelativeLayout>
+</layout>
